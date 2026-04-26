@@ -156,7 +156,7 @@ export default function Attendance({ onSubmit }) {
       <section
         id="asistencia"
          className="min-h-screen relative overflow-hidden"
-        style={{ backgroundColor: "#DADEDF",}}
+        style={{ backgroundColor: "#F0F1EF",}}
       >
         <div className="container mx-auto px-4 py-5 relative z-10">
 

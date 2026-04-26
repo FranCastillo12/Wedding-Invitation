@@ -8,17 +8,14 @@ export default function Place() {
 
   return (
     <>
-     <div style={{ backgroundColor: "#95A58D", marginBottom: "-8px" }}>
-  <svg
-    viewBox="0 0 1440 60"
-    preserveAspectRatio="none"
-    style={{ display: "block", width: "100%", height: "60px" }}
-  >
-    <path
-      d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"
-      fill="#DADEDF"
-    />
-  </svg>
+    <div style={{
+  backgroundColor: "#DADEDF",
+  padding: "0 32px",
+}}>
+  <div style={{
+    height: "1px",
+    background: "linear-gradient(to right, transparent, rgba(149,165,141,0.4), transparent)",
+  }} />
 </div>
     </>
   );

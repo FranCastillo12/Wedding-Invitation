@@ -27,7 +27,7 @@ export default function Gifts() {
   return (
     <section
       id="regalos"
-      style={{ backgroundColor: "#DADEDF"}}
+      style={{ backgroundColor: "#F0F1EF"}}
     >
       <div
        className="container mx-auto px-4 py-5 relative z-10"
