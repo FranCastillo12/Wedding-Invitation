@@ -124,7 +124,7 @@ export default function Place() {
                 {/* Imagen centrada — más grande */}
                 <div className="flex justify-center mb-8">
                   <img
-                    src="/public/Hotelmarriot.jpeg"
+                    src="/Hotelmarriot.jpeg"
                     alt="Hotel Marriot"
                     className="rounded-xl object-cover border"
                     style={{
