@@ -1,0 +1,1 @@
+export { default as DressCode } from "./components/DressCode";

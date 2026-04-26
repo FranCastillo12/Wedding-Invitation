@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-lavanda:        #9BAED4;
+  --color-lavanda-dark:   #5D7B9F;
+  --color-salvia:         #95A58D;
+  --color-salvia-light:   #C0CFB2;
+  --color-niebla:         #DADEDF;
+
+  /* Aliases semánticos */
+  --color-bg:             var(--color-niebla);
+  --color-primary:        var(--color-lavanda);
+  --color-primary-dark:   var(--color-lavanda-dark);
+  --color-accent:         var(--color-salvia);
+  --color-accent-light:   var(--color-salvia-light);
+
+  /* Texto */
+  --color-text-dark:      #2A3040;
+  --color-text-muted:     rgba(93,123,159,0.7);
+  --color-text-accent:    var(--color-salvia);
+
+  /* Bordes */
+  --color-border:         rgba(93,123,159,0.2);
+  --color-border-strong:  rgba(93,123,159,0.35);
+}
