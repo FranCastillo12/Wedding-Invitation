@@ -80,3 +80,27 @@ html, body, #root {
     @apply bg-background text-foreground;
   }
 }
+
+
+
+.ornamento-top {
+  top: clamp(14px, 3%, 58px); /* PC */
+}
+
+@media (max-width: 768px) {
+  .ornamento-top {
+    top: clamp( 11px, -1px, 58px); /* Móvil */
+  }
+}
+
+
+
+.ornamento-bottom {
+  bottom: clamp(14px, 3%, 58px); /* PC */
+}
+
+@media (max-width: 768px) {
+  .ornamento-bottom {
+    bottom: clamp( 10px, 1%, 58px); /* Móvil */
+  }
+}

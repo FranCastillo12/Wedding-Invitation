@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useConfig } from "@/features/invitation/hooks/use-config";
 import { formatEventDate } from "@/lib/format-event-date";
 import { getGuestName } from "@/lib/invitation-storage";
+import "../../../index.css"
 
 export default function Hero() {
   const config = useConfig();
@@ -30,22 +31,22 @@ export default function Hero() {
 
       {/* Ornamento top — oculto en landscape móvil */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 flex items-center landscape-hide"
-        style={{ top: "clamp(14px, 3%, 58px)" }}
+        className="absolute left-1/2 -translate-x-1/2 flex items-center ornamento-top landscape-hide"
+       
       >
-        <div className="h-px" style={{ width: "clamp(40px, 18vw, 380px)", backgroundColor: "rgba(149,165,141,0.5)" }} />
+        <div className="h-px" style={{ width: "clamp(40px, 18vw, 380px)", backgroundColor: "#95A58D" }} />
         <Diamond />
-        <div className="h-px" style={{ width: "clamp(40px, 18vw, 380px)", backgroundColor: "rgba(149,165,141,0.5)" }} />
+        <div className="h-px" style={{ width: "clamp(40px, 18vw, 380px)", backgroundColor: "#95A58D" }} />
       </div>
 
       {/* Ornamento bottom — oculto en landscape móvil */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 flex items-center landscape-hide"
-        style={{ bottom: "clamp(14px, 3%, 56px)" }}
+        className="absolute left-1/2 -translate-x-1/2 flex  items-center ornamento-bottom landscape-hidden"
+       
       >
-        <div className="h-px" style={{ width: "clamp(40px, 18vw, 380px)", backgroundColor: "rgba(149,165,141,0.5)" }} />
+        <div className="h-px" style={{ width: "clamp(40px, 18vw, 380px)", backgroundColor: "#95A58D" }} />
         <Diamond />
-        <div className="h-px" style={{ width: "clamp(40px, 18vw, 380px)", backgroundColor: "rgba(149,165,141,0.5)" }} />
+        <div className="h-px" style={{ width: "clamp(40px, 18vw, 380px)", backgroundColor: "#95A58D" }} />
       </div>
 
       {/* Contenido */}
@@ -133,9 +134,9 @@ export default function Hero() {
 
         {/* Adorno debajo del lugar */}
         <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-          <div className="w-10 sm:w-12 md:w-20 lg:w-28 h-px" style={{ backgroundColor: "rgba(149,165,141,0.4)" }} />
+          <div className="w-10 sm:w-12 md:w-20 lg:w-28 h-px" style={{ backgroundColor: "#95A58D" }} />
           <Diamond />
-          <div className="w-10 sm:w-12 md:w-20 lg:w-28 h-px" style={{ backgroundColor: "rgba(149,165,141,0.4)" }} />
+          <div className="w-10 sm:w-12 md:w-20 lg:w-28 h-px" style={{ backgroundColor: "#95A58D" }} />
         </div>
 
         {/* Flecha scroll */}

@@ -8,7 +8,6 @@ export default function DressCode() {
   return (
     <section
       id="DressCode"
-       className="min-h-screen relative overflow-hidden"
       style={{ backgroundColor: "#DADEDF" }}
     >
       <div   className="container mx-auto px-4 py-5 relative z-10"
