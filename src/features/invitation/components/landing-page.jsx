@@ -29,10 +29,7 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
         }}
       />
 
-      <div
-        className="relative"
-        style={{ perspective: "1400px" }}
-      >
+      <div className="relative" style={{ perspective: "1400px" }}>
         {/* Contenedor del sobre */}
         <div
           className={`relative transition-all duration-1000 ease-in-out ${
@@ -56,8 +53,20 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
             style={{ overflow: "visible" }}
           >
             <defs>
-              <filter id="envelopeShadow" x="-5%" y="-5%" width="110%" height="120%">
-                <feDropShadow dx="0" dy="8" stdDeviation="12" floodColor="#5D7B9F" floodOpacity="0.12" />
+              <filter
+                id="envelopeShadow"
+                x="-5%"
+                y="-5%"
+                width="110%"
+                height="120%"
+              >
+                <feDropShadow
+                  dx="0"
+                  dy="8"
+                  stdDeviation="12"
+                  floodColor="#5D7B9F"
+                  floodOpacity="0.12"
+                />
               </filter>
 
               {/* Gradiente cuerpo del sobre */}
@@ -92,7 +101,15 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
             </defs>
 
             {/* === CUERPO DEL SOBRE === */}
-            <rect x="0" y="0" width="680" height="460" rx="4" ry="4" fill="url(#bodyGrad)" />
+            <rect
+              x="0"
+              y="0"
+              width="680"
+              height="460"
+              rx="4"
+              ry="4"
+              fill="url(#bodyGrad)"
+            />
 
             {/* Pliegues laterales (triángulos) */}
             <polygon points="0,0 340,200 0,460" fill="url(#sideGrad)" />
@@ -102,24 +119,82 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
             <polygon points="0,460 340,200 680,460" fill="url(#bottomGrad)" />
 
             {/* Líneas de pliegue sutiles */}
-            <line x1="0" y1="0" x2="340" y2="200" stroke="rgba(93,123,159,0.15)" strokeWidth="0.8" />
-            <line x1="680" y1="0" x2="340" y2="200" stroke="rgba(93,123,159,0.15)" strokeWidth="0.8" />
-            <line x1="0" y1="460" x2="340" y2="200" stroke="rgba(93,123,159,0.12)" strokeWidth="0.8" />
-            <line x1="680" y1="460" x2="340" y2="200" stroke="rgba(93,123,159,0.12)" strokeWidth="0.8" />
+            <line
+              x1="0"
+              y1="0"
+              x2="340"
+              y2="200"
+              stroke="rgba(93,123,159,0.15)"
+              strokeWidth="0.8"
+            />
+            <line
+              x1="680"
+              y1="0"
+              x2="340"
+              y2="200"
+              stroke="rgba(93,123,159,0.15)"
+              strokeWidth="0.8"
+            />
+            <line
+              x1="0"
+              y1="460"
+              x2="340"
+              y2="200"
+              stroke="rgba(93,123,159,0.12)"
+              strokeWidth="0.8"
+            />
+            <line
+              x1="680"
+              y1="460"
+              x2="340"
+              y2="200"
+              stroke="rgba(93,123,159,0.12)"
+              strokeWidth="0.8"
+            />
 
             {/* Borde exterior del sobre */}
-            <rect x="0.5" y="0.5" width="679" height="459" rx="3.5" ry="3.5" fill="none" stroke="rgba(93,123,159,0.3)" strokeWidth="1" />
+            <rect
+              x="0.5"
+              y="0.5"
+              width="679"
+              height="459"
+              rx="3.5"
+              ry="3.5"
+              fill="none"
+              stroke="rgba(93,123,159,0.3)"
+              strokeWidth="1"
+            />
 
             {/* Marco decorativo interior */}
-            <rect x="12" y="12" width="656" height="436" rx="2" ry="2" fill="none" stroke="rgba(93,123,159,0.18)" strokeWidth="0.6" />
-            <rect x="18" y="18" width="644" height="424" rx="1.5" ry="1.5" fill="none" stroke="rgba(149,165,141,0.2)" strokeWidth="0.4" />
+            <rect
+              x="12"
+              y="12"
+              width="656"
+              height="436"
+              rx="2"
+              ry="2"
+              fill="none"
+              stroke="rgba(93,123,159,0.18)"
+              strokeWidth="0.6"
+            />
+            <rect
+              x="18"
+              y="18"
+              width="644"
+              height="424"
+              rx="1.5"
+              ry="1.5"
+              fill="none"
+              stroke="rgba(149,165,141,0.2)"
+              strokeWidth="0.4"
+            />
           </svg>
 
           {/* === SOLAPA ANIMADA (HTML sobre SVG) === */}
           <div
             className="absolute top-0 left-0 right-0 origin-top"
             style={{
-              height: "43.5%", /* 200/460 */
+              height: "43.5%" /* 200/460 */,
               transformStyle: "preserve-3d",
               transform: isOpening ? "rotateX(180deg)" : "rotateX(0deg)",
               transition: "transform 0.75s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -141,7 +216,12 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
               {/* Triángulo de la solapa */}
               <polygon points="0,0 680,0 340,200" fill="url(#flapFrontGrad)" />
               {/* Borde de la solapa */}
-              <polyline points="0,0 340,200 680,0" fill="none" stroke="rgba(93,123,159,0.35)" strokeWidth="1" />
+              <polyline
+                points="0,0 340,200 680,0"
+                fill="none"
+                stroke="rgba(93,123,159,0.35)"
+                strokeWidth="1"
+              />
             </svg>
 
             {/* Reverso de la solapa */}
@@ -161,13 +241,14 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
 
           {/* === SELLO === */}
           <div
-            className="absolute -translate-x-1/2"
+            className="absolute -translate-x-1/2 left-[44%] sm:left-[47%]"
             style={{
               top: "calc(43.5% - 28px)",
               zIndex: 10,
-              left: "47%",  
               transformStyle: "preserve-3d",
-              transform: isOpening ? "rotateX(180deg) translateY(0px)" : "rotateX(0deg)",
+              transform: isOpening
+                ? "rotateX(180deg) translateY(0px)"
+                : "rotateX(0deg)",
               transition: "transform 0.75s cubic-bezier(0.4,0,0.2,1)",
             }}
           >
@@ -180,7 +261,8 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                boxShadow: "0 2px 12px rgba(93,123,159,0.25), inset 0 1px 0 rgba(255,255,255,0.15)",
+                boxShadow:
+                  "0 2px 12px rgba(93,123,159,0.25), inset 0 1px 0 rgba(255,255,255,0.15)",
               }}
             >
               <WaxSealIcon />
@@ -190,58 +272,74 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
           {/* === CONTENIDO DEL SOBRE === */}
           <div
             className="absolute inset-0 flex flex-col items-center justify-end text-center"
-            style={{ paddingBottom: "clamp(20px, 5%, 38px)", paddingTop: "46%" }}
+            style={{
+              paddingBottom: "clamp(20px, 5%, 38px)",
+              paddingTop: "46%",
+            }}
           >
             <div className="flex flex-col items-center gap-0">
+            <div className="hidden sm:flex items-center gap-2 mb-3 opacity-50">
+  <div className="w-8 h-px" style={{ backgroundColor: "#95A58D" }} />
+  <Diamond size={7} color="#95A58D" />
+  <div className="w-8 h-px" style={{ backgroundColor: "#95A58D" }} />
+</div>
 
-              {/* Línea decorativa top */}
-              <div className="flex items-center gap-2 mb-3 opacity-50">
-                <div className="w-8 h-px" style={{ backgroundColor: "#95A58D" }} />
-                <Diamond size={7} color="#95A58D" />
-                <div className="w-8 h-px" style={{ backgroundColor: "#95A58D" }} />
-              </div>
-
-              <h2 style={{
-                fontFamily: "'Dancing Script', cursive",
-                fontSize: "clamp(32px, 5.5vw, 52px)",
-                fontWeight: 700,
-                color: "#2E3D4F",
-                lineHeight: 1.15,
-                margin: 0,
-                letterSpacing: "-0.01em",
-              }}>
+              <h2
+                style={{
+                  fontFamily: "'Dancing Script', cursive",
+                  fontSize: "clamp(32px, 5.5vw, 52px)",
+                  fontWeight: 700,
+                  color: "#2E3D4F",
+                  lineHeight: 1.15,
+                  margin: 0,
+                  letterSpacing: "-0.01em",
+                }}
+              >
                 {config.boyfriendName}
               </h2>
 
               {/* Divisor & */}
-              <div className="flex items-center gap-3 my-2" style={{ width: "clamp(160px, 24vw, 240px)" }}>
-                <div className="flex-1 h-px" style={{ backgroundColor: "rgba(93,123,159,0.2)" }} />
-                <span style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: "clamp(13px, 2vw, 18px)",
-                  fontStyle: "italic",
-                  color: "rgba(93,123,159,0.7)",
-                  lineHeight: 1,
-                }}>
+              <div
+                className="flex items-center gap-3 my-2"
+                style={{ width: "clamp(160px, 24vw, 240px)" }}
+              >
+                <div
+                  className="flex-1 h-px"
+                  style={{ backgroundColor: "rgba(93,123,159,0.2)" }}
+                />
+                <span
+                  style={{
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: "clamp(13px, 2vw, 18px)",
+                    fontStyle: "italic",
+                    color: "rgba(93,123,159,0.7)",
+                    lineHeight: 1,
+                  }}
+                >
                   &amp;
                 </span>
-                <div className="flex-1 h-px" style={{ backgroundColor: "rgba(93,123,159,0.2)" }} />
+                <div
+                  className="flex-1 h-px"
+                  style={{ backgroundColor: "rgba(93,123,159,0.2)" }}
+                />
               </div>
 
-              <h2 style={{
-                fontFamily: "'Dancing Script', cursive",
-                fontSize: "clamp(32px, 5.5vw, 52px)",
-                fontWeight: 700,
-                color: "#2E3D4F",
-                lineHeight: 1.15,
-                margin: 0,
-                letterSpacing: "-0.01em",
-              }}>
+              <h2
+                style={{
+                  fontFamily: "'Dancing Script', cursive",
+                  fontSize: "clamp(32px, 5.5vw, 52px)",
+                  fontWeight: 700,
+                  color: "#2E3D4F",
+                  lineHeight: 1.15,
+                  margin: 0,
+                  letterSpacing: "-0.01em",
+                }}
+              >
                 {config.GirlfriendName}
               </h2>
 
               {/* Fecha */}
-              <div className="flex items-center gap-2 mt-3 opacity-60">
+              {/* <div className="flex items-center gap-2 mt-3 opacity-60">
                 <div className="w-8 h-px" style={{ backgroundColor: "#95A58D" }} />
                 <p style={{
                   fontFamily: "'Playfair Display', serif",
@@ -254,8 +352,7 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
                   {formatEventDate(config.date)}
                 </p>
                 <div className="w-8 h-px" style={{ backgroundColor: "#95A58D" }} />
-              </div>
-
+              </div> */}
             </div>
           </div>
 
@@ -308,21 +405,57 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
 function WaxSealIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-      <rect x="5" y="5" width="14" height="14" rx="0.5"
-        fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="0.8"
-        transform="rotate(45,12,12)" />
-      <rect x="7.5" y="7.5" width="9" height="9" rx="0.5"
+      <rect
+        x="5"
+        y="5"
+        width="14"
+        height="14"
+        rx="0.5"
+        fill="none"
+        stroke="rgba(255,255,255,0.75)"
+        strokeWidth="0.8"
+        transform="rotate(45,12,12)"
+      />
+      <rect
+        x="7.5"
+        y="7.5"
+        width="9"
+        height="9"
+        rx="0.5"
         fill="rgba(255,255,255,0.2)"
-        transform="rotate(45,12,12)" />
+        transform="rotate(45,12,12)"
+      />
     </svg>
   );
 }
 
 function Diamond({ color = "rgba(149,165,141,0.65)", size = 10 }) {
   return (
-    <svg width={size * 1.4} height={size * 1.4} viewBox="0 0 18 18" style={{ flexShrink: 0 }}>
-      <rect x="4" y="4" width="10" height="10" fill="none" stroke={color} strokeWidth="0.9" transform="rotate(45,9,9)" />
-      <rect x="6.5" y="6.5" width="5" height="5" fill={color} opacity="0.35" transform="rotate(45,9,9)" />
+    <svg
+      width={size * 1.4}
+      height={size * 1.4}
+      viewBox="0 0 18 18"
+      style={{ flexShrink: 0 }}
+    >
+      <rect
+        x="4"
+        y="4"
+        width="10"
+        height="10"
+        fill="none"
+        stroke={color}
+        strokeWidth="0.9"
+        transform="rotate(45,9,9)"
+      />
+      <rect
+        x="6.5"
+        y="6.5"
+        width="5"
+        height="5"
+        fill={color}
+        opacity="0.35"
+        transform="rotate(45,9,9)"
+      />
     </svg>
   );
 }
