@@ -133,7 +133,7 @@ export default function DressCode() {
           }}>
             {[
               { label: "Evitar", color: "#e8e0d0", text: "Beige / Blanco", avoid: true },
-              { label: "Evitar", color: "#05773e", text: "Verde", avoid: true },
+              { label: "Evitar", color: "#155722", text: "Verde", avoid: true },
 
         
             ].map((chip) => (
@@ -154,7 +154,7 @@ export default function DressCode() {
                   height: "14px",
                   borderRadius: "50%",
                   backgroundColor: chip.color,
-                  border: chip.avoid ? "1.5px solid rgba(93,123,159,0.35)" : "none",
+                  border: chip.avoid ? "1.5px solid rgba(255, 0, 0, 0.35)" : "none",
                   flexShrink: 0,
                   position: "relative",
                 }}>
@@ -163,7 +163,7 @@ export default function DressCode() {
                       viewBox="0 0 14 14"
                       style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
                     >
-                      <line x1="2" y1="2" x2="12" y2="12" stroke="rgba(93,123,159,0.55)" strokeWidth="1.5" strokeLinecap="round"/>
+                      <line x1="2" y1="2" x2="12" y2="12" stroke="rgba(255, 0, 0, 0.55)" strokeWidth="1.5" strokeLinecap="round"/>
                     </svg>
                   )}
                 </div>
