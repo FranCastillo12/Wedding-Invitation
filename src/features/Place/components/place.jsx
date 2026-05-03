@@ -6,6 +6,43 @@ import { formatEventDate } from "@/lib/format-event-date";
 export default function Place() {
   const config = useConfig();
 
+
+  // Función para generar y descargar el .ics
+function agregarAlCalendario() {
+  // ✏️ EDITÁ ESTOS DATOS con los de tu evento
+  const titulo = "Boda de María Valeria y Aaron";
+  const descripcion = "Descripción del evento";
+  const lugar = "Heredia, Costa Rica";
+  const inicio = "20270116T193000Z";  // 16 ene 2027, 1:30 PM Costa Rica
+const fin    = "20270117T020000Z";  // 16 ene 2027, 8:00 PM Costa Rica (pasa a UTC del día 17)
+
+  const contenido = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "BEGIN:VEVENT",
+    `DTSTART:${inicio}`,
+    `DTEND:${fin}`,
+    `SUMMARY:${titulo}`,
+    `DESCRIPTION:${descripcion}`,
+    `LOCATION:${lugar}`,
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\r\n");
+
+  const blob = new Blob([contenido], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "evento.ics";
+  link.click();
+
+  URL.revokeObjectURL(url); // limpia la memoria
+}
+
+
+
+
   return (
     <>
       <section
@@ -56,7 +93,7 @@ export default function Place() {
 
           <div className="max-w-4xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
@@ -182,7 +219,9 @@ export default function Place() {
                     }}
                   >
                     <CalendarCheck className="w-4 h-4 flex-shrink-0" />
-                    <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>
+                    <span 
+                     onClick={agregarAlCalendario}
+                    style={{ fontFamily: "Georgia, serif", fontStyle: "italic",  cursor: "pointer"}}>
                       Añadir al calendario
                     </span>
                   </motion.a>

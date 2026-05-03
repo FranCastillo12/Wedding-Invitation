@@ -11,18 +11,35 @@ export default function Gifts() {
     setHasAnimated(true);
   }, []);
 
-  const cuentas = [
-    {
-      banco: "BANCO NACIONAL",
-      cuenta: "100-01-000-123456-7",
-      iban: "CR21 0151 0001 0012 3456 78",
-    },
-    {
-      banco: "BAC CREDOMATIC",
-      cuenta: "010203040-5",
-      iban: "CR05 0152 0001 0203 0405 06",
-    },
-  ];
+const cuentas = [
+  {
+    banco: "BAC CREDOMATIC",
+    moneda: "Colones",
+    simbolo: "₡",
+    cliente: "Maria Valeria Castillo Calderón",
+    cuenta: "971496013",
+    iban: "...........",
+    tipo: "transferencia",
+  },
+  {
+    banco: "BAC CREDOMATIC",
+    moneda: "Dólares",
+    simbolo: "$",
+    cliente: "Aaron Quiros Gutierrez",
+    cuenta: "954907846",
+    iban: ".............",
+    tipo: "transferencia",
+  },
+  {
+    banco: "SINPE MÓVIL",
+    moneda: "Colones",
+    simbolo: "₡",
+    cliente: "Maria Valeria Castillo Calderón",
+    cuenta: "8888-8888",
+    iban: null,
+    tipo: "sinpe",
+  },
+];;
 
   return (
     <section
@@ -89,9 +106,7 @@ export default function Gifts() {
           maxWidth: "620px",
           margin: "0 auto 40px",
         }}>
-          Para nosotros lo más importante es contar con su presencia.
-          Si desean hacernos una muestra de cariño, les agradecemos
-          que sea mediante efectivo en un sobre.
+          Su presencia es nuestro mayor regalo. De desear obsequiarnos algo, aquí les dejamos las formas de hacerlo.
         </p>
 
         <div style={{
@@ -194,27 +209,37 @@ export default function Gifts() {
             </p>
 
             {cuentas.map((c, i) => (
-              <div
-                key={i}
-                style={{
-                  borderTop: "1px solid rgba(149,165,141,0.25)",
-                  paddingTop: "20px",
-                  marginTop: i > 0 ? "20px" : 0,
-                }}
-              >
-                <p style={{
-                  fontSize: "11px",
-                  letterSpacing: "0.3em",
-                  color: "#95A58D",
-                  textAlign: "center",
-                  marginBottom: "14px",
-                }}>
-                  {c.banco}
-                </p>
-                <BankRow label="CUENTA" value={c.cuenta} />
-                <BankRow label="IBAN"   value={c.iban} />
-              </div>
-            ))}
+  <div
+    key={i}
+    style={{
+      borderTop: "1px solid rgba(149,165,141,0.25)",
+      paddingTop: "20px",
+      marginTop: i > 0 ? "20px" : 0,
+    }}
+  >
+    <p style={{
+      fontSize: "11px",
+      letterSpacing: "0.3em",
+      color: "#95A58D",
+      textAlign: "center",
+      marginBottom: "6px",
+    }}>
+      {c.banco}
+    </p>
+    <p style={{
+      fontSize: "11px",
+      letterSpacing: "0.15em",
+      color: "rgba(58,74,90,0.5)",
+      textAlign: "center",
+      marginBottom: "14px",
+    }}>
+      {c.simbolo} {c.moneda}
+    </p>
+    <BankRow label="CLIENTE" value={c.cliente} />
+    <BankRow label="CUENTA"  value={c.cuenta} />
+    <BankRow label="IBAN"    value={c.iban} />
+  </div>
+))}
           </div>
 
         </div>
@@ -224,6 +249,7 @@ export default function Gifts() {
 }
 
 function BankRow({ label, value }) {
+  if (!value) return null; // oculta filas sin valor (ej: iban null en SINPE)
   return (
     <div style={{
       display: "flex",

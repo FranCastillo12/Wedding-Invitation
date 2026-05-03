@@ -18,37 +18,37 @@ export default function Itinerary() {
   const itinerario = [
     {
       icon: Heart,
-      hora: "......",
+      hora: "1:30 pm",
       titulo: "Llegada de invitados",
       descripcion: "Descripcion",
     },
     {
       icon: Blend,
-      hora: "......",
+      hora: "2;00 pm",
       titulo: "Boda",
       descripcion: "Descripcion",
     },
     {
       icon: Martini,
-      hora: "....",
+      hora: "3:00 pm",
       titulo: "Cóctel",
       descripcion: "Descripcion",
     },
     {
       icon: Music,
-      hora: "....",
+      hora: "4:00 pm",
       titulo: "Fiesta",
       descripcion: "Descripcion",
     },
     {
       icon: UtensilsCrossed,
-      hora: ".....",
+      hora: "6:00 pm",
       titulo: "Cena",
       descripcion: "Descripcion",
     },
     {
       icon: PartyPopper,
-      hora: "....",
+      hora: "8:00 pm",
       titulo: "Despedida",
       descripcion: "Descripcion",
     },

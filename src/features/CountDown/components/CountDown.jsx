@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function Countdown({ targetDate }) {
   const [timeLeft, setTimeLeft] = useState({
@@ -37,7 +38,23 @@ export default function Countdown({ targetDate }) {
   className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6"
   style={{ width: "clamp(270px, 80vw, 500px)" }}
 >
+
+
+
+            
+         
   {units.map((unit) => (
+
+
+   <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+
+
     <div key={unit.label} className="flex flex-col items-center">
       <div
         className="rounded-xl flex flex-col items-center justify-center border w-full"
@@ -75,7 +92,9 @@ export default function Countdown({ targetDate }) {
         </span>
       </div>
     </div>
+     </motion.div>
   ))}
+  
 </div>
   );
 }

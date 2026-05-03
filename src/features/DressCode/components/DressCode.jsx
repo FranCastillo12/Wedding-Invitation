@@ -112,8 +112,7 @@ export default function DressCode() {
             maxWidth: "480px",
             margin: "0 0 36px",
           }}>
-            Deseamos que sea un evento formal. Se pide evitar
-            tonos beige y blancos tanto para hombres como para mujeres.
+           Les pedimos asistir con vestimenta formal. Por favor tomar en cuenta los colores que no están permitidos.
           </p>
 
           {/* Divisor */}
@@ -134,9 +133,9 @@ export default function DressCode() {
           }}>
             {[
               { label: "Evitar", color: "#e8e0d0", text: "Beige / Blanco", avoid: true },
-              { label: "Sugerido", color: "#3a4a5a", text: "Tonos oscuros" },
-              { label: "Sugerido", color: "#5D7B9F", text: "Azules" },
-              { label: "Sugerido", color: "#95A58D", text: "Verdes apagados" },
+              { label: "Evitar", color: "#05773e", text: "Verde", avoid: true },
+
+        
             ].map((chip) => (
               <div
                 key={chip.text}

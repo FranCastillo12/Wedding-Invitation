@@ -273,7 +273,7 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
           <div
             className="absolute inset-0 flex flex-col items-center justify-end text-center "
             style={{
-              paddingBottom: "clamp(8px, 3vw, 40px)",
+              paddingBottom: "clamp(8px, 3vw, 45px)",
             }}
           >
             <div className="flex flex-col items-center gap-0">
@@ -293,7 +293,7 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
              
                 style={{
                   fontFamily: "'Dancing Script', cursive",
-                  fontSize: "clamp(32px, 5.5vw, 52px)",
+                  fontSize: "clamp(32px, 5.5vw, 70px)",
                   fontWeight: 700,
                   color: "#2E3D4F",
                   lineHeight: 1.15,
@@ -333,7 +333,7 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
               <h2
                 style={{
                   fontFamily: "'Dancing Script', cursive",
-                  fontSize: "clamp(32px, 5.5vw, 52px)",
+                  fontSize: "clamp(32px, 5.5vw, 70px)",
                   fontWeight: 700,
                   color: "#2E3D4F",
                   lineHeight: 1.15,

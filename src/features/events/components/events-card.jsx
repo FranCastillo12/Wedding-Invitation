@@ -5,15 +5,12 @@ import {
   Calendar,
   Clock,
   MapPin,
-  CalendarPlus,
   X,
   Globe,
   Apple,
   Calendar as CalendarIcon
 } from 'lucide-react';
 import { formatEventDate } from '@/lib/format-event-date';
-
-
 
 const Modal = ({ isOpen, onClose, children }) => {
   return (
@@ -33,7 +30,7 @@ const Modal = ({ isOpen, onClose, children }) => {
             exit={{ opacity: 0, y: 20 }}
             className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] w-[90%] max-w-sm"
           >
-            <div className="bg-white transform -translate-x-1/2 -translate-y-1/2 rounded-2xl p-6 shadow-2xl border border-gray-100">
+            <div className="bg-white rounded-2xl p-6 shadow-2xl border border-gray-100">
               {children}
             </div>
           </motion.div>
@@ -55,74 +52,25 @@ const CalendarButton = ({ icon: Icon, label, onClick, className = "" }) => (
   </motion.button>
 );
 
-/**
- * SingleEventCard component displays an event card with options to add the event 
- * to various calendars (Google Calendar, Apple Calendar, and Outlook Calendar).
- *
- * @component
- * @param {Object} props - Component props.
- * @param {Object} props.eventData - Object containing event data.
- * @param {string} props.eventData.date - The date of the event (expected format: YYYY-MM-DD).
- * @param {string} props.eventData.startTime - The start time of the event (expected format: HH:mm).
- * @param {string} props.eventData.endTime - The end time of the event (expected format: HH:mm).
- * @param {string} props.eventData.title - The title of the event.
- * @param {string} props.eventData.description - A description of the event.
- * @param {string} props.eventData.location - The location where the event takes place.
- * @param {string} props.eventData.timeZone - The time zone of the event.
- *
- * @example
- * const eventData = {
- *   date: '2023-10-15',
- *   startTime: '14:00',
- *   endTime: '16:00',
- *   title: 'Wedding Ceremony - Reception',
- *   description: 'Join us to celebrate the wedding ceremony and reception.',
- *   location: 'Sunset Gardens',
- *   timeZone: 'Asia/Jakarta'
- * };
- *
- * <SingleEventCard eventData={eventData} />
- *
- * @returns {JSX.Element} A JSX element representing the event card.
- */
 const SingleEventCard = ({ eventData }) => {
-  const [showCalendarModal, setShowCalendarModal] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   const googleCalendarLink = () => {
     const startDate = new Date(`${eventData.date}T${eventData.startTime}:00`);
     const endDate = new Date(`${eventData.date}T${eventData.endTime}:00`);
-
-    const formatDate = (date) => {
-      return date.toISOString().replace(/-|:|\.\d+/g, '');
-    };
-
+    const formatDate = (date) => date.toISOString().replace(/-|:|\.\d+/g, '');
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventData.title)}&dates=${formatDate(startDate)}/${formatDate(endDate)}&details=${encodeURIComponent(eventData.description)}&location=${encodeURIComponent(eventData.location)}&ctz=${eventData.timeZone}`;
   };
 
   const generateICSContent = () => {
     const startDate = new Date(`${eventData.date}T${eventData.startTime}:00`);
     const endDate = new Date(`${eventData.date}T${eventData.endTime}:00`);
-
-    const formatICSDate = (date) => {
-      return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-    };
-
-    return `BEGIN:VCALENDAR
-VERSION:2.0
-BEGIN:VEVENT
-URL:${window.location.href}
-DTSTART:${formatICSDate(startDate)}
-DTEND:${formatICSDate(endDate)}
-SUMMARY:${eventData.title}
-DESCRIPTION:${eventData.description}
-LOCATION:${eventData.location}
-END:VEVENT
-END:VCALENDAR`;
+    const formatICSDate = (date) => date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    return `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nURL:${window.location.href}\nDTSTART:${formatICSDate(startDate)}\nDTEND:${formatICSDate(endDate)}\nSUMMARY:${eventData.title}\nDESCRIPTION:${eventData.description}\nLOCATION:${eventData.location}\nEND:VEVENT\nEND:VCALENDAR`;
   };
 
   const downloadICSFile = () => {
-    const icsContent = generateICSContent();
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const blob = new Blob([generateICSContent()], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download = `${eventData.title.toLowerCase().replace(/ /g, '-')}.ics`;
@@ -132,7 +80,7 @@ END:VCALENDAR`;
   };
 
   return (
-    <div className="relative">
+    <>
       <motion.div
         className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-4"
         initial={{ opacity: 0, y: 20 }}
@@ -140,80 +88,89 @@ END:VCALENDAR`;
         transition={{ duration: 0.5 }}
       >
         <div className="flex justify-between items-center">
-          <h3 className="text-xl font-semibold text-gray-800">{eventData.title.split(' - ')[0]}</h3>
-
+          <h3 className="text-xl font-semibold text-gray-800">{eventData.title}</h3>
         </div>
+
         <div className="space-y-3 text-gray-600">
-
-        
-          <div className="flex items-center space-x-3">
-           
-            <span>..............</span>
-          </div>
-
           <button
-  onClick={() => setShowDetails(!showDetails)}
-  style={{
-    fontFamily: "'Playfair Display', serif",
-    fontSize: "clamp(10px, 1.5vw, 12px)",
-    letterSpacing: "0.25em",
-    color: "#8FA886",
-    background: "none",
-    border: "1px solid rgba(149,165,141,0.4)",
-    borderRadius: "2px",
-    padding: "6px 16px",
-    cursor: "pointer",
-    textTransform: "uppercase",
-  }}
->
- Ver detalles
-</button>
+            onClick={() => setShowDetails(true)}
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "clamp(10px, 1.5vw, 12px)",
+              letterSpacing: "0.25em",
+              color: "#8FA886",
+              background: "none",
+              border: "1px solid rgba(149,165,141,0.4)",
+              borderRadius: "2px",
+              padding: "6px 16px",
+              cursor: "pointer",
+              textTransform: "uppercase",
+            }}
+          >
+            Ver detalles
+          </button>
         </div>
       </motion.div>
 
-      <Modal
-        isOpen={showCalendarModal}
-        onClose={() => setShowCalendarModal(false)}
-      >
-        <div className="space-y-6 ">
-          <div className="flex justify-between  items-center">
-            <h3 className="text-xl font-semibold text-gray-800">Add to Calendar</h3>
+      {/* Modal FUERA del div con position relative */}
+      <Modal isOpen={showDetails} onClose={() => setShowDetails(false)}>
+        <div className="space-y-5">
+          <div className="flex justify-between items-center">
+            <h3 className="text-xl font-semibold text-gray-800">{eventData.title}</h3>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              onClick={() => setShowCalendarModal(false)}
+              onClick={() => setShowDetails(false)}
               className="text-gray-500 hover:text-gray-700"
             >
               <X className="w-5 h-5" />
             </motion.button>
           </div>
 
-          <div className="space-y-3">
-            <CalendarButton
-              icon={(props) => <Globe {...props} className="w-5 h-5 text-rose-500" />}
-              label="Google Calendar"
-              onClick={() => window.open(googleCalendarLink(), '_blank')}
-            />
+          <div className="space-y-3 text-gray-600">
+            <div className="flex items-center space-x-3">
+              <Calendar className="w-4 h-4 text-[#8FA886]" />
+              <span className="text-sm">{formatEventDate(eventData.date)}</span>
+            </div>
+            <div className="flex items-center space-x-3">
+              <Clock className="w-4 h-4 text-[#8FA886]" />
+              <span className="text-sm">{eventData.startTime} – {eventData.endTime}</span>
+            </div>
+            <div className="flex items-center space-x-3">
+              <MapPin className="w-4 h-4 text-[#8FA886]" />
+              <span className="text-sm">{eventData.location}</span>
+            </div>
+            {eventData.description && (
+              <p className="text-sm text-gray-500 pt-1">{eventData.description}</p>
+            )}
+          </div>
 
-            <CalendarButton
-              icon={(props) => <Apple {...props} className="w-5 h-5 text-gray-900" />}
-              label="Apple Calendar"
-              onClick={downloadICSFile}
-            />
-
-            <CalendarButton
-              icon={(props) => <CalendarIcon {...props} className="w-5 h-5 text-blue-600" />}
-              label="Outlook Calendar"
-              onClick={downloadICSFile}
-            />
+          <div className="pt-2 border-t border-gray-100">
+            <p className="text-xs text-gray-400 mb-3 tracking-widest uppercase">Agregar al calendario</p>
+            <div className="space-y-2">
+              <CalendarButton
+                icon={(props) => <Globe {...props} className="w-5 h-5 text-rose-500" />}
+                label="Google Calendar"
+                onClick={() => window.open(googleCalendarLink(), '_blank')}
+              />
+              <CalendarButton
+                icon={(props) => <Apple {...props} className="w-5 h-5 text-gray-900" />}
+                label="Apple Calendar"
+                onClick={downloadICSFile}
+              />
+              <CalendarButton
+                icon={(props) => <CalendarIcon {...props} className="w-5 h-5 text-blue-600" />}
+                label="Outlook Calendar"
+                onClick={downloadICSFile}
+              />
+            </div>
           </div>
         </div>
       </Modal>
-    </div>
+    </>
   );
 };
 
-// Main EventCards component that handles multiple events
 const EventCards = ({ events }) => {
   return (
     <div className="space-y-4">
