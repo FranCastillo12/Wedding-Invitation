@@ -271,20 +271,26 @@ export default function LandingPage({ onOpenInvitation, names, date }) {
 
           {/* === CONTENIDO DEL SOBRE === */}
           <div
-            className="absolute inset-0 flex flex-col items-center justify-end text-center"
+            className="absolute inset-0 flex flex-col items-center justify-end text-center "
             style={{
-              paddingBottom: "clamp(20px, 5%, 38px)",
-              paddingTop: "46%",
+              paddingBottom: "clamp(8px, 3vw, 40px)",
             }}
           >
             <div className="flex flex-col items-center gap-0">
-            <div className="hidden sm:flex items-center gap-2 mb-3 opacity-50">
-  <div className="w-8 h-px" style={{ backgroundColor: "#95A58D" }} />
-  <Diamond size={7} color="#95A58D" />
-  <div className="w-8 h-px" style={{ backgroundColor: "#95A58D" }} />
-</div>
+              <div className="hidden sm:flex items-center gap-2 mb-3 opacity-50">
+                <div
+                  className="w-8 h-px"
+                  style={{ backgroundColor: "#95A58D" }}
+                />
+                <Diamond size={7} color="#95A58D" />
+                <div
+                  className="w-8 h-px"
+                  style={{ backgroundColor: "#95A58D" }}
+                />
+              </div>
 
               <h2
+             
                 style={{
                   fontFamily: "'Dancing Script', cursive",
                   fontSize: "clamp(32px, 5.5vw, 52px)",
