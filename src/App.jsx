@@ -19,72 +19,92 @@ import { useState, lazy, Suspense } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Heart } from "lucide-react";
+
 import { useInvitation } from "@/features/invitation";
 import { useAudio } from "@/hooks/use-audio";
-import staticConfig from "@/config/config";
 
-// Lazy load components for better performance
+import staticConfig from "@/config/config";
+import invitados from "@/data/invitados";
+
+// Lazy load components
 const Layout = lazy(() => import("@/components/layout/layout"));
+
 const MainContent = lazy(
   () => import("@/features/invitation/components/main-content"),
 );
+
 const LandingPage = lazy(
   () => import("@/features/invitation/components/landing-page"),
 );
 
-/**
- * App component serves as the root of the application.
- *
- * It manages the state to determine whether the invitation content should be shown.
- * Initially, the invitation is closed and the LandingPage component is rendered.
- * Once triggered, the Layout component containing MainContent is displayed.
- *
- * This component also uses HelmetProvider and Helmet to set up various meta tags:
- *   - Primary meta tags: title and description.
- *   - Open Graph tags for Facebook.
- *   - Twitter meta tags for summary and large image preview.
- *   - Favicon link and additional meta tags for responsive design and theme color.
- *
- * @component
- * @example
- * // Renders the App component
- * <App />
- */
 function App() {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
+
   const { config, isLoading, error } = useInvitation();
 
-  // Use config from API if available, otherwise fall back to static config
+  // Obtener ID desde la URL
+  // Ejemplo:
+  // localhost:5173/?id=8K9P2X
+
+  const queryParams = new URLSearchParams(window.location.search);
+
+  const id = queryParams.get("id");
+
+  // Buscar invitado
+
+  const invitado = invitados.find(
+    (item) => item.id === id
+  );
+
+  // Validar invitación
+
+  if (!invitado) {
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundColor: "#CBC8C4" }}
+      >
+        <div className="text-center p-6">
+          <Heart
+            className="h-12 w-12 mx-auto mb-4"
+            style={{ color: "#2A3B27" }}
+            fill="currentColor"
+          />
+
+          <h1
+            className="text-2xl font-serif mb-2"
+            style={{ color: "#2A3B27" }}
+          >
+            Invitación no válida
+          </h1>
+
+          <p style={{ color: "#70805D" }}>
+            El enlace de invitación no existe.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Configuración activa
+
   const activeConfig = config || staticConfig.data;
 
-  // Initialize audio with config settings
+  // Audio
+
   const audioControls = useAudio({
     src: activeConfig?.audio?.src || "/audio/fulfilling-humming.mp3",
     loop: activeConfig?.audio?.loop !== false,
   });
 
-  // Handle opening the invitation - this is called from a user click,
-  // which is the perfect opportunity to start audio (browser policy compliant)
+  // Abrir invitación
+
   const handleOpenInvitation = async () => {
-    // Start audio playback during user interaction
     await audioControls.play();
     setIsInvitationOpen(true);
   };
 
-  // Show loading state
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-rose-50 to-pink-50">
-        <div className="text-center">
-          <Heart
-            className="h-12 w-12 text-rose-500 mx-auto mb-4 animate-pulse"
-            fill="currentColor"
-          />
-          <p className="text-gray-600">Memuat undangan...</p>
-        </div>
-      </div>
-    );
-  }
+  // Loading
 
   if (isLoading) {
     return (
@@ -98,24 +118,40 @@ function App() {
             style={{ color: "#2A3B27" }}
             fill="currentColor"
           />
-          <p style={{ color: "#70805D" }}>Cargando invitación...</p>
+
+          <p style={{ color: "#70805D" }}>
+            Cargando invitación...
+          </p>
         </div>
       </div>
     );
   }
 
-  // Show error state
+  // Error
+
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-rose-50 to-pink-50">
-        <div className="text-center w-full mx-auto p-6">
-          <div className="text-rose-500 text-6xl mb-4">!</div>
-          <h1 className="text-2xl font-serif text-gray-800 mb-2">
-            Undangan Tidak Ditemukan
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundColor: "#CBC8C4" }}
+      >
+        <div className="text-center p-6">
+          <div
+            className="text-6xl mb-4"
+            style={{ color: "#2A3B27" }}
+          >
+            !
+          </div>
+
+          <h1
+            className="text-2xl font-serif mb-2"
+            style={{ color: "#2A3B27" }}
+          >
+            Error
           </h1>
-          <p className="text-gray-600 mb-4">{error}</p>
-          <p className="text-sm text-gray-500">
-            Silakan periksa URL Anda atau hubungi penyelenggara.
+
+          <p style={{ color: "#70805D" }}>
+            {error}
           </p>
         </div>
       </div>
@@ -125,53 +161,102 @@ function App() {
   return (
     <HelmetProvider>
       <Helmet>
-        {/* Primary Meta Tags */}
-        <title>{activeConfig.title}</title>
-        <meta name="title" content={activeConfig.title} />
-        <meta name="description" content={activeConfig.description} />
-        {/* Prevent Wayback Machine and Web Archiving */}
-        <meta name="robots" content="noindex, nofollow, noarchive, nocache" />
-        <meta name="googlebot" content="noindex, nofollow, noarchive" />
-        <meta name="bingbot" content="noindex, nofollow, noarchive" />
-        <meta name="archive" content="no" />
+        <title>
+          {activeConfig.title}
+        </title>
+
         <meta
-          name="cache-control"
-          content="no-cache, no-store, must-revalidate"
+          name="title"
+          content={activeConfig.title}
         />
-        <meta httpEquiv="Pragma" content="no-cache" />
-        <meta httpEquiv="Expires" content="0" />
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={window.location.href} />
-        <meta property="og:title" content={activeConfig.title} />
-        <meta property="og:description" content={activeConfig.description} />
-        <meta property="og:image" content={activeConfig.ogImage} />
-        {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={window.location.href} />
-        <meta property="twitter:title" content={activeConfig.title} />
+
+        <meta
+          name="description"
+          content={activeConfig.description}
+        />
+
+        <meta
+          name="robots"
+          content="noindex, nofollow, noarchive, nocache"
+        />
+
+        <meta
+          property="og:type"
+          content="website"
+        />
+
+        <meta
+          property="og:url"
+          content={window.location.href}
+        />
+
+        <meta
+          property="og:title"
+          content={activeConfig.title}
+        />
+
+        <meta
+          property="og:description"
+          content={activeConfig.description}
+        />
+
+        <meta
+          property="og:image"
+          content={activeConfig.ogImage}
+        />
+
+        <meta
+          property="twitter:card"
+          content="summary_large_image"
+        />
+
+        <meta
+          property="twitter:url"
+          content={window.location.href}
+        />
+
+        <meta
+          property="twitter:title"
+          content={activeConfig.title}
+        />
+
         <meta
           property="twitter:description"
           content={activeConfig.description}
         />
-        <meta property="twitter:image" content={activeConfig.ogImage} />
-        {/* Favicon */}
-        <link rel="icon" type="image/x-icon" href={activeConfig.favicon} />
-        {/* Additional Meta Tags */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#FDA4AF" /> {/* Rose-300 color */}
+
+        <meta
+          property="twitter:image"
+          content={activeConfig.ogImage}
+        />
+
+        <link
+          rel="icon"
+          type="image/x-icon"
+          href={activeConfig.favicon}
+        />
+
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        />
+
+        <meta
+          name="theme-color"
+          content="#FDA4AF"
+        />
       </Helmet>
 
-      <Suspense
-
-      
-      >
+      <Suspense fallback={null}>
         <AnimatePresence mode="wait">
           {!isInvitationOpen ? (
-            <LandingPage onOpenInvitation={handleOpenInvitation} />
+            <LandingPage
+              onOpenInvitation={handleOpenInvitation}
+              invitado={invitado}
+            />
           ) : (
             <Layout audioControls={audioControls}>
-              <MainContent />
+              <MainContent invitado={invitado} />
             </Layout>
           )}
         </AnimatePresence>

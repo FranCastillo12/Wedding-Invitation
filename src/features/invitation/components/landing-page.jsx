@@ -468,7 +468,7 @@
 import { useConfig } from "@/features/invitation/hooks/use-config";
 import { useState } from "react";
 
-export default function LandingPage({ onOpenInvitation }) {
+export default function LandingPage({ onOpenInvitation, invitado }) {
   const [isOpening, setIsOpening] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const config = useConfig();

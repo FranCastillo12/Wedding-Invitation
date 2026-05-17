@@ -26,6 +26,7 @@ import App from "./App.jsx";
 import "./index.css";
 import { InvitationProvider } from "./features/invitation";
 
+
 // Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
