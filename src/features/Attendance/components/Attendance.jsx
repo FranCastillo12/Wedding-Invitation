@@ -4,7 +4,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Check, X } from "lucide-react";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-const COLORS = ["#8FA886", "#5D7B9F", "#95A58D", "#C8B8A2", "#D4C5B0", "#7A9E8E", "#6B8FAD"];
+const COLORS = [
+  "#8FA886",
+  "#5D7B9F",
+  "#95A58D",
+  "#C8B8A2",
+  "#D4C5B0",
+  "#7A9E8E",
+  "#6B8FAD",
+];
 
 function randomBetween(a, b) {
   return a + Math.random() * (b - a);
@@ -65,7 +73,9 @@ function Confetti({ active }) {
         ctx.restore();
       });
 
-      const alive = particles.current.some((p) => p.opacity > 0 && p.y < canvas.height);
+      const alive = particles.current.some(
+        (p) => p.opacity > 0 && p.y < canvas.height,
+      );
       if (alive) {
         animRef.current = requestAnimationFrame(draw);
       } else {
@@ -82,12 +92,15 @@ function Confetti({ active }) {
   return (
     <canvas
       ref={canvasRef}
-      style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 999 }}
+      style={{
+        position: "fixed",
+        inset: 0,
+        pointerEvents: "none",
+        zIndex: 999,
+      }}
     />
   );
 }
-
-
 
 // ── Attendance ────────────────────────────────────────────────────────────────
 export default function Attendance({ onSubmit }) {
@@ -106,7 +119,8 @@ export default function Attendance({ onSubmit }) {
   const validate = () => {
     const e = {};
     if (!form.nombre.trim()) e.nombre = "Requerido";
-    if (!form.correo.trim() || !/\S+@\S+\.\S+/.test(form.correo)) e.correo = "Correo inválido";
+    if (!form.correo.trim() || !/\S+@\S+\.\S+/.test(form.correo))
+      e.correo = "Correo inválido";
     if (form.asiste === null) e.asiste = "Seleccioná una opción";
     return e;
   };
@@ -155,13 +169,11 @@ export default function Attendance({ onSubmit }) {
 
       <section
         id="asistencia"
-         className="min-h-screen relative overflow-hidden"
-        style={{ backgroundColor: "#F0F1EF",}}
+        className="relative overflow-hidden"
+        style={{ backgroundColor: "#F0F1EF" }}
       >
         <div className="container mx-auto px-4 py-5 relative z-10">
-
-
-              {/* Section Header */}
+          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -169,43 +181,47 @@ export default function Attendance({ onSubmit }) {
             viewport={{ once: true }}
             className="text-center space-y-4 mb-16"
           >
+            <h1
+              className="text-4xl sm:text-5xl mb-2"
+              style={{paddingTop:"20px", fontFamily: "Dancing Script", color: "#95A58D" }}
+            >
+              Confirma tu Asistencia
+            </h1>
 
-    <h1
-      className="text-4xl sm:text-5xl mb-2"
-      style={{ fontFamily: "Dancing Script", color: "#95A58D" }}
-    >
-    Confirma tu Asistencia
-    </h1>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "12px",
+                margin: "2% 0 20px",
+              }}
+            >
+              <div
+                style={{
+                  height: "1px",
+                  width: "180px",
+                  background: "rgba(149,165,141,0.45)",
+                }}
+              />
+              <div
+                style={{
+                  width: "7px",
+                  height: "7px",
+                  background: "rgba(149,165,141,0.6)",
+                  transform: "rotate(45deg)",
+                }}
+              />
+              <div
+                style={{
+                  height: "1px",
+                  width: "180px",
+                  background: "rgba(149,165,141,0.45)",
+                }}
+              />
+            </div>
+          </motion.div>
 
-
-
-         <p
-      className="mb-10 text-sm tracking-wide"
-      style={{ fontFamily: "Georgia, serif",fontSize: "clamp(18px, 6vw, 10px)",color: "#3a4a5a" }}
-    >
-     Esperamos verte allí
-    </p>
-
-
-
-    
-  
-        <div style={{
-        
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "12px",
-          margin: "2% 0 20px",
-        }}>
-          <div style={{ height: "1px", width: "180px", background: "rgba(149,165,141,0.45)" }} />
-          <div style={{ width: "7px", height: "7px", background: "rgba(149,165,141,0.6)", transform: "rotate(45deg)" }} />
-          <div style={{ height: "1px", width: "180px", background: "rgba(149,165,141,0.45)" }} />
-        </div>
-
-
-  </motion.div>
- 
           {/* RSVP Card */}
           <div style={{ display: "flex", justifyContent: "center" }}>
             <div style={{ width: "min(100%, 520px)" }}>
@@ -225,51 +241,110 @@ export default function Attendance({ onSubmit }) {
                       position: "relative",
                     }}
                   >
-                    <div style={{
-                      position: "absolute", inset: "10px",
-                      border: "1px solid rgba(149,165,141,0.15)",
-                      borderRadius: "2px", pointerEvents: "none",
-                    }} />
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: "10px",
+                        border: "1px solid rgba(149,165,141,0.15)",
+                        borderRadius: "2px",
+                        pointerEvents: "none",
+                      }}
+                    />
 
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", marginBottom: "24px" }}>
-                      <div style={{ height: "1px", width: "40px", background: "rgba(149,165,141,0.4)" }} />
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "10px",
+                        marginBottom: "24px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          height: "1px",
+                          width: "40px",
+                          background: "rgba(149,165,141,0.4)",
+                        }}
+                      />
                       <Diamond size={8} />
-                      <div style={{ height: "1px", width: "40px", background: "rgba(149,165,141,0.4)" }} />
+                      <div
+                        style={{
+                          height: "1px",
+                          width: "40px",
+                          background: "rgba(149,165,141,0.4)",
+                        }}
+                      />
                     </div>
 
-                    <p style={{
-                      fontFamily: "Georgia, serif", fontSize: "11px",
-                      letterSpacing: "0.35em", color: "#95A58D",
-                      textTransform: "uppercase", margin: "0 0 12px",
-                    }}>
-                      {form.asiste ? "¡Nos vemos pronto!" : "Gracias por avisarnos"}
+                    <p
+                      style={{
+                        fontFamily: "Georgia, serif",
+                        fontSize: "11px",
+                        letterSpacing: "0.35em",
+                        color: "#95A58D",
+                        textTransform: "uppercase",
+                        margin: "0 0 12px",
+                      }}
+                    >
+                      {form.asiste
+                        ? "¡Nos vemos pronto!"
+                        : "Gracias por avisarnos"}
                     </p>
 
-                    <h3 style={{
-                      fontFamily: "'Dancing Script', cursive",
-                      fontSize: "clamp(28px, 5vw, 38px)",
-                      fontWeight: 700, color: "#2E3D4F",
-                      margin: "0 0 16px", lineHeight: 1.2,
-                    }}>
+                    <h3
+                      style={{
+                        fontFamily: "'Dancing Script', cursive",
+                        fontSize: "clamp(28px, 5vw, 38px)",
+                        fontWeight: 700,
+                        color: "#2E3D4F",
+                        margin: "0 0 16px",
+                        lineHeight: 1.2,
+                      }}
+                    >
                       {form.nombre}
                     </h3>
 
-                    <p style={{
-                      fontFamily: "Georgia, serif", fontSize: "14px",
-                      fontStyle: "italic", color: "rgba(58,74,90,0.65)", margin: 0,
-                    }}>
+                    <p
+                      style={{
+                        fontFamily: "Georgia, serif",
+                        fontSize: "14px",
+                        fontStyle: "italic",
+                        color: "rgba(58,74,90,0.65)",
+                        margin: 0,
+                      }}
+                    >
                       {form.asiste
                         ? `Tu confirmación fue recibida.`
                         : "Lamentamos que no puedas acompañarnos."}
                     </p>
 
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", marginTop: "28px" }}>
-                      <div style={{ height: "1px", width: "40px", background: "rgba(149,165,141,0.4)" }} />
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "10px",
+                        marginTop: "28px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          height: "1px",
+                          width: "40px",
+                          background: "rgba(149,165,141,0.4)",
+                        }}
+                      />
                       <Diamond size={8} />
-                      <div style={{ height: "1px", width: "40px", background: "rgba(149,165,141,0.4)" }} />
+                      <div
+                        style={{
+                          height: "1px",
+                          width: "40px",
+                          background: "rgba(149,165,141,0.4)",
+                        }}
+                      />
                     </div>
                   </motion.div>
-
                 ) : (
                   <motion.div
                     key="form"
@@ -285,30 +360,59 @@ export default function Attendance({ onSubmit }) {
                       position: "relative",
                     }}
                   >
-                    <div style={{
-                      position: "absolute", inset: "10px",
-                      border: "1px solid rgba(93,123,159,0.25))",
-                      borderRadius: "2px", pointerEvents: "none",
-                    }} />
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: "10px",
+                        border: "1px solid rgba(93,123,159,0.25))",
+                        borderRadius: "2px",
+                        pointerEvents: "none",
+                      }}
+                    />
 
                     {/* Header del card */}
 
-
-                    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "20px",
+                      }}
+                    >
                       {/* Nombre */}
                       <div>
                         <label style={labelStyle}>Nombre completo</label>
                         <input
                           type="text"
                           value={form.nombre}
-                          onChange={e => { setForm({ ...form, nombre: e.target.value }); setErrors({ ...errors, nombre: null }); }}
+                          onChange={(e) => {
+                            setForm({ ...form, nombre: e.target.value });
+                            setErrors({ ...errors, nombre: null });
+                          }}
                           placeholder="Tu nombre completo"
                           style={inputStyle(errors.nombre)}
-                          onFocus={e => e.target.style.borderColor = "rgba(93,123,159,0.55)"}
-                          onBlur={e => e.target.style.borderColor = errors.nombre ? "#c0796a" : "rgba(93,123,159,0.25)"}
+                          onFocus={(e) =>
+                            (e.target.style.borderColor =
+                              "rgba(93,123,159,0.55)")
+                          }
+                          onBlur={(e) =>
+                            (e.target.style.borderColor = errors.nombre
+                              ? "#c0796a"
+                              : "rgba(93,123,159,0.25)")
+                          }
                         />
-                        {errors.nombre && <p style={{ margin: "4px 0 0", fontSize: "11px", color: "#c0796a", fontFamily: "Georgia, serif" }}>{errors.nombre}</p>}
+                        {errors.nombre && (
+                          <p
+                            style={{
+                              margin: "4px 0 0",
+                              fontSize: "11px",
+                              color: "#c0796a",
+                              fontFamily: "Georgia, serif",
+                            }}
+                          >
+                            {errors.nombre}
+                          </p>
+                        )}
                       </div>
 
                       {/* Correo */}
@@ -317,13 +421,34 @@ export default function Attendance({ onSubmit }) {
                         <input
                           type="email"
                           value={form.correo}
-                          onChange={e => { setForm({ ...form, correo: e.target.value }); setErrors({ ...errors, correo: null }); }}
+                          onChange={(e) => {
+                            setForm({ ...form, correo: e.target.value });
+                            setErrors({ ...errors, correo: null });
+                          }}
                           placeholder="correo@ejemplo.com"
                           style={inputStyle(errors.correo)}
-                          onFocus={e => e.target.style.borderColor = "rgba(93,123,159,0.55)"}
-                          onBlur={e => e.target.style.borderColor = errors.correo ? "#c0796a" : "rgba(93,123,159,0.25)"}
+                          onFocus={(e) =>
+                            (e.target.style.borderColor =
+                              "rgba(93,123,159,0.55)")
+                          }
+                          onBlur={(e) =>
+                            (e.target.style.borderColor = errors.correo
+                              ? "#c0796a"
+                              : "rgba(93,123,159,0.25)")
+                          }
                         />
-                        {errors.correo && <p style={{ margin: "4px 0 0", fontSize: "11px", color: "#c0796a", fontFamily: "Georgia, serif" }}>{errors.correo}</p>}
+                        {errors.correo && (
+                          <p
+                            style={{
+                              margin: "4px 0 0",
+                              fontSize: "11px",
+                              color: "#c0796a",
+                              fontFamily: "Georgia, serif",
+                            }}
+                          >
+                            {errors.correo}
+                          </p>
+                        )}
                       </div>
 
                       {/* ¿Asiste? */}
@@ -331,16 +456,32 @@ export default function Attendance({ onSubmit }) {
                         <label style={labelStyle}>¿Vas a asistir?</label>
                         <div style={{ display: "flex", gap: "12px" }}>
                           <button
-                            onClick={() => { setForm({ ...form, asiste: true }); setErrors({ ...errors, asiste: null }); }}
+                            onClick={() => {
+                              setForm({ ...form, asiste: true });
+                              setErrors({ ...errors, asiste: null });
+                            }}
                             style={{
-                              flex: 1, padding: "10px 0",
-                              display: "flex", alignItems: "center", justifyContent: "center", gap: "7px",
-                              fontFamily: "Georgia, serif", fontSize: "11px",
-                              letterSpacing: "0.25em", textTransform: "uppercase",
-                              cursor: "pointer", borderRadius: "3px",
+                              flex: 1,
+                              padding: "10px 0",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              gap: "7px",
+                              fontFamily: "Georgia, serif",
+                              fontSize: "11px",
+                              letterSpacing: "0.25em",
+                              textTransform: "uppercase",
+                              cursor: "pointer",
+                              borderRadius: "3px",
                               transition: "all 0.2s ease",
-                              backgroundColor: form.asiste === true ? "#8FA886" : "rgba(255,255,255,0.5)",
-                              border: form.asiste === true ? "1px solid #8FA886" : "1px solid rgba(93,123,159,0.25)",
+                              backgroundColor:
+                                form.asiste === true
+                                  ? "#8FA886"
+                                  : "rgba(255,255,255,0.5)",
+                              border:
+                                form.asiste === true
+                                  ? "1px solid #8FA886"
+                                  : "1px solid rgba(93,123,159,0.25)",
                               color: form.asiste === true ? "#fff" : "#5D7B9F",
                             }}
                           >
@@ -349,16 +490,32 @@ export default function Attendance({ onSubmit }) {
                           </button>
 
                           <button
-                            onClick={() => { setForm({ ...form, asiste: false, espacios: 1 }); setErrors({ ...errors, asiste: null }); }}
+                            onClick={() => {
+                              setForm({ ...form, asiste: false, espacios: 1 });
+                              setErrors({ ...errors, asiste: null });
+                            }}
                             style={{
-                              flex: 1, padding: "10px 0",
-                              display: "flex", alignItems: "center", justifyContent: "center", gap: "7px",
-                              fontFamily: "Georgia, serif", fontSize: "11px",
-                              letterSpacing: "0.25em", textTransform: "uppercase",
-                              cursor: "pointer", borderRadius: "3px",
+                              flex: 1,
+                              padding: "10px 0",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              gap: "7px",
+                              fontFamily: "Georgia, serif",
+                              fontSize: "11px",
+                              letterSpacing: "0.25em",
+                              textTransform: "uppercase",
+                              cursor: "pointer",
+                              borderRadius: "3px",
                               transition: "all 0.2s ease",
-                              backgroundColor: form.asiste === false ? "#9aa8b8" : "rgba(255,255,255,0.5)",
-                              border: form.asiste === false ? "1px solid #9aa8b8" : "1px solid rgba(93,123,159,0.25)",
+                              backgroundColor:
+                                form.asiste === false
+                                  ? "#9aa8b8"
+                                  : "rgba(255,255,255,0.5)",
+                              border:
+                                form.asiste === false
+                                  ? "1px solid #9aa8b8"
+                                  : "1px solid rgba(93,123,159,0.25)",
                               color: form.asiste === false ? "#fff" : "#5D7B9F",
                             }}
                           >
@@ -366,7 +523,18 @@ export default function Attendance({ onSubmit }) {
                             No podré ir
                           </button>
                         </div>
-                        {errors.asiste && <p style={{ margin: "4px 0 0", fontSize: "11px", color: "#c0796a", fontFamily: "Georgia, serif" }}>{errors.asiste}</p>}
+                        {errors.asiste && (
+                          <p
+                            style={{
+                              margin: "4px 0 0",
+                              fontSize: "11px",
+                              color: "#c0796a",
+                              fontFamily: "Georgia, serif",
+                            }}
+                          >
+                            {errors.asiste}
+                          </p>
+                        )}
                       </div>
 
                       {/* Cantidad de espacios */}
@@ -379,37 +547,79 @@ export default function Attendance({ onSubmit }) {
                             transition={{ duration: 0.25 }}
                             style={{ overflow: "hidden" }}
                           >
-                            <label style={labelStyle}>Cantidad de personas</label>
-                            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                            <label style={labelStyle}>
+                              Cantidad de personas
+                            </label>
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "12px",
+                              }}
+                            >
                               <button
-                                onClick={() => setForm({ ...form, espacios: Math.max(1, form.espacios - 1) })}
+                                onClick={() =>
+                                  setForm({
+                                    ...form,
+                                    espacios: Math.max(1, form.espacios - 1),
+                                  })
+                                }
                                 style={{
-                                  width: "34px", height: "34px", borderRadius: "50%",
+                                  width: "34px",
+                                  height: "34px",
+                                  borderRadius: "50%",
                                   border: "1px solid rgba(93,123,159,0.3)",
-                                  backgroundColor: "rgba(255,255,255,0.5)", color: "#5D7B9F",
-                                  fontSize: "18px", cursor: "pointer",
-                                  display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                                  backgroundColor: "rgba(255,255,255,0.5)",
+                                  color: "#5D7B9F",
+                                  fontSize: "18px",
+                                  cursor: "pointer",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  flexShrink: 0,
                                 }}
-                              >−</button>
+                              >
+                                −
+                              </button>
 
-                              <div style={{
-                                flex: 1, textAlign: "center",
-                                fontFamily: "'Dancing Script', cursive",
-                                fontSize: "28px", fontWeight: 700, color: "#2E3D4F", lineHeight: 1,
-                              }}>
+                              <div
+                                style={{
+                                  flex: 1,
+                                  textAlign: "center",
+                                  fontFamily: "'Dancing Script', cursive",
+                                  fontSize: "28px",
+                                  fontWeight: 700,
+                                  color: "#2E3D4F",
+                                  lineHeight: 1,
+                                }}
+                              >
                                 {form.espacios}
                               </div>
 
                               <button
-                                onClick={() => setForm({ ...form, espacios: Math.min(10, form.espacios + 1) })}
+                                onClick={() =>
+                                  setForm({
+                                    ...form,
+                                    espacios: Math.min(10, form.espacios + 1),
+                                  })
+                                }
                                 style={{
-                                  width: "34px", height: "34px", borderRadius: "50%",
+                                  width: "34px",
+                                  height: "34px",
+                                  borderRadius: "50%",
                                   border: "1px solid rgba(93,123,159,0.3)",
-                                  backgroundColor: "rgba(255,255,255,0.5)", color: "#5D7B9F",
-                                  fontSize: "18px", cursor: "pointer",
-                                  display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                                  backgroundColor: "rgba(255,255,255,0.5)",
+                                  color: "#5D7B9F",
+                                  fontSize: "18px",
+                                  cursor: "pointer",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  flexShrink: 0,
                                 }}
-                              >+</button>
+                              >
+                                +
+                              </button>
                             </div>
                           </motion.div>
                         )}
@@ -421,24 +631,29 @@ export default function Attendance({ onSubmit }) {
                         whileTap={{ scale: 0.98 }}
                         onClick={handleSubmit}
                         style={{
-                          width: "100%", padding: "13px 0", marginTop: "8px",
-                          fontFamily: "Georgia, serif", fontSize: "11px",
-                          letterSpacing: "0.4em", textTransform: "uppercase",
-                          color: "#fff", backgroundColor: "#8FA886",
-                          border: "none", borderRadius: "3px", cursor: "pointer",
+                          width: "100%",
+                          padding: "13px 0",
+                          marginTop: "8px",
+                          fontFamily: "Georgia, serif",
+                          fontSize: "11px",
+                          letterSpacing: "0.4em",
+                          textTransform: "uppercase",
+                          color: "#fff",
+                          backgroundColor: "#8FA886",
+                          border: "none",
+                          borderRadius: "3px",
+                          cursor: "pointer",
                           boxShadow: "0 2px 12px rgba(143,168,134,0.3)",
                         }}
                       >
                         Confirmar asistencia
                       </motion.button>
-
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
           </div>
-
         </div>
       </section>
     </>

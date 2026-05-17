@@ -1,5 +1,4 @@
 import { useConfig } from "@/features/invitation/hooks/use-config";
-import { Shirt } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function DressCode() {
@@ -10,51 +9,39 @@ export default function DressCode() {
       id="DressCode"
       style={{ backgroundColor: "#DADEDF" }}
     >
-      <div   className="container mx-auto px-4 py-5 relative z-10"
-      style={{ maxWidth: "960px", margin: "0 auto" }}>
+      <div
+        className="container mx-auto px-4 py-5 relative z-10"
+        style={{ maxWidth: "960px", margin: "0 auto" }}
+      >
 
-    
-            {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center space-y-4 mb-16"
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center space-y-4 mb-16"
+        >
+          <h1
+            className="text-4xl sm:text-5xl mb-2"
+            style={{paddingTop:"20px", fontFamily: "Dancing Script", color: "#95A58D" }}
           >
-        
+            Código de vestimenta
+          </h1>
 
-
-      <h1
-      className="text-4xl sm:text-5xl mb-2"
-      style={{ fontFamily: "Dancing Script", color: "#95A58D" }}
-    >
-    Vestimenta
-    </h1>
-
-
-        
-         <p
-      className="mb-10 text-sm tracking-wide"
-      style={{ fontFamily: "Georgia, serif",fontSize: "clamp(18px, 6vw, 10px)",color: "#3a4a5a" }}
-    >
-        Código de vestimenta
-    </p>
-
-        {/* Separador */}
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "12px",
-          margin: "2% 0 40px",
-        }}>
-          <div style={{ height: "1px", width: "180px", background: "rgba(149,165,141,0.45)" }} />
-          <div style={{ width: "7px", height: "7px", background: "rgba(149,165,141,0.6)", transform: "rotate(45deg)" }} />
-          <div style={{ height: "1px", width: "180px", background: "rgba(149,165,141,0.45)" }} />
-        </div>
-  </motion.div>
-
+          {/* Separador */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "12px",
+            margin: "2% 0 40px",
+          }}>
+            <div style={{ height: "1px", width: "180px", background: "rgba(149,165,141,0.45)" }} />
+            <div style={{ width: "7px", height: "7px", background: "rgba(149,165,141,0.6)", transform: "rotate(45deg)" }} />
+            <div style={{ height: "1px", width: "180px", background: "rgba(149,165,141,0.45)" }} />
+          </div>
+        </motion.div>
 
         {/* Card */}
         <motion.div
@@ -72,21 +59,25 @@ export default function DressCode() {
             alignItems: "center",
           }}
         >
-          {/* Ícono */}
-          <div style={{
-            width: "64px",
-            height: "64px",
-            marginBottom: "24px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: "50%",
-            background: "rgba(255,255,255,0.55)",
-            border: "1px solid rgba(93,123,159,0.2)",
-            flexShrink: 0,
-          }}>
-            <Shirt size={28} color="#5D7B9F" strokeWidth={1.3} />
-          </div>
+          {/* Imagen de la perra */}
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+            style={{
+              width: "min(100%, 280px)",
+              marginBottom: "24px",
+            }}
+          >
+            <img
+              src="/Dress-Code1.png"
+              alt="Código de vestimenta formal"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </motion.div>
 
           {/* Título de la card */}
           <p style={{
@@ -112,7 +103,7 @@ export default function DressCode() {
             maxWidth: "480px",
             margin: "0 0 36px",
           }}>
-           Les pedimos asistir con vestimenta formal. Por favor tomar en cuenta los colores que no están permitidos.
+            Les pedimos asistir con vestimenta formal. Por favor tomar en cuenta los colores que no están permitidos.
           </p>
 
           {/* Divisor */}
@@ -134,8 +125,6 @@ export default function DressCode() {
             {[
               { label: "Evitar", color: "#e8e0d0", text: "Beige / Blanco", avoid: true },
               { label: "Evitar", color: "#155722", text: "Verde", avoid: true },
-
-        
             ].map((chip) => (
               <div
                 key={chip.text}

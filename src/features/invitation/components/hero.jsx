@@ -1,8 +1,28 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { useConfig } from "@/features/invitation/hooks/use-config";
 import { formatEventDate } from "@/lib/format-event-date";
 import { getGuestName } from "@/lib/invitation-storage";
-import "../../../index.css"
+import "../../../index.css";
+
+// Variantes reutilizables
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1], delay },
+});
+
+const fadeIn = (delay = 0) => ({
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  transition: { duration: 1.1, ease: "easeOut", delay },
+});
+
+const scaleIn = (delay = 0) => ({
+  initial: { opacity: 0, scale: 0.85 },
+  animate: { opacity: 1, scale: 1 },
+  transition: { duration: 1, ease: [0.22, 1, 0.36, 1], delay },
+});
 
 export default function Hero() {
   const config = useConfig();
@@ -19,63 +39,77 @@ export default function Hero() {
       style={{ backgroundColor: "#DADEDF" }}
     >
       {/* Marco exterior */}
-      <div
+      <motion.div
         className="absolute inset-2 sm:inset-3 md:inset-6 lg:inset-5 border"
         style={{ borderColor: "#5D7B9F", borderWidth: "0.6px" }}
+        initial={{ opacity: 0, scale: 0.97 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.4, ease: "easeOut", delay: 0.1 }}
       />
       {/* Marco interior */}
-      <div
+      <motion.div
         className="absolute inset-6 sm:inset-8 md:inset-16 lg:inset-15 border"
         style={{ borderColor: "#5D7B9F", borderWidth: "0.4px" }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.4, ease: "easeOut", delay: 0.25 }}
       />
 
-      {/* Ornamento top — oculto en landscape móvil */}
-      <div
+      {/* Ornamento top */}
+      <motion.div
         className="absolute left-1/2 -translate-x-1/2 flex items-center ornamento-top landscape-hide"
-       
+        {...fadeIn(0.4)}
       >
         <div className="h-px" style={{ width: "clamp(40px, 18vw, 380px)", backgroundColor: "#95A58D" }} />
         <Diamond />
         <div className="h-px" style={{ width: "clamp(40px, 18vw, 380px)", backgroundColor: "#95A58D" }} />
-      </div>
+      </motion.div>
 
-      {/* Ornamento bottom — oculto en landscape móvil */}
-      <div
-        className="absolute left-1/2 -translate-x-1/2 flex  items-center ornamento-bottom landscape-hidden"
-       
+      {/* Ornamento bottom */}
+      <motion.div
+        className="absolute left-1/2 -translate-x-1/2 flex items-center ornamento-bottom landscape-hidden"
+        {...fadeIn(0.4)}
       >
         <div className="h-px" style={{ width: "clamp(40px, 18vw, 380px)", backgroundColor: "#95A58D" }} />
         <Diamond />
         <div className="h-px" style={{ width: "clamp(40px, 18vw, 380px)", backgroundColor: "#95A58D" }} />
-      </div>
+      </motion.div>
 
       {/* Contenido */}
       <div className="text-center relative z-10 flex flex-col items-center max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-5xl w-full">
 
-        {/* Nombre del invitado si existe */}
+        {/* Nombre del invitado */}
         {guestName && (
-          <p className="text-xs sm:text-sm md:text-base mb-3 sm:mb-4 tracking-widest" style={{ color: "#5D7B9F" }}>
+          <motion.p
+            className="text-xs sm:text-sm md:text-base mb-3 sm:mb-4 tracking-widest"
+            style={{ color: "#5D7B9F" }}
+            {...fadeUp(0.3)}
+          >
             Para: {guestName}
-          </p>
+          </motion.p>
         )}
 
-        {/* Adorno encima de "Nos casamos" */}
-        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-5 md:mb-6 lg:mb-8">
+        {/* Adorno superior */}
+        <motion.div
+          className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-5 md:mb-6 lg:mb-8"
+          {...fadeIn(0.5)}
+        >
           <div className="w-10 sm:w-12 md:w-20 lg:w-28 h-px" style={{ backgroundColor: "#95A58D" }} />
           <Diamond />
           <div className="w-10 sm:w-12 md:w-20 lg:w-28 h-px" style={{ backgroundColor: "#95A58D" }} />
-        </div>
+        </motion.div>
 
-        {/* Nos casamos */}
-        <p
+        {/* NOS CASAMOS */}
+        <motion.p
           className="tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg mb-6 sm:mb-8 md:mb-10 lg:mb-14"
           style={{ color: "#95A58D" }}
+          {...fadeUp(0.6)}
         >
           NOS CASAMOS
-        </p>
+        </motion.p>
 
-        {/* Nombre 1 — único h1 */}
-        <h1
+        {/* Nombre 1 */}
+        <motion.h1
           className="leading-none mb-6 sm:mb-8 md:mb-10 lg:mb-12"
           style={{
             fontFamily: "Dancing Script",
@@ -84,12 +118,16 @@ export default function Hero() {
             fontStyle: "italic",
             color: "#3a4a5a",
           }}
+          {...scaleIn(0.75)}
         >
           {config.boyfriendName}
-        </h1>
+        </motion.h1>
 
         {/* Divisor con & */}
-        <div className="flex items-center justify-center w-full mb-8">
+        <motion.div
+          className="flex items-center justify-center w-full mb-8"
+          {...fadeIn(1)}
+        >
           <div className="h-px flex-shrink-0" style={{ width: "clamp(40px, 15vw, 160px)", backgroundColor: "rgba(93,123,159,0.25)" }} />
           <div
             className="rounded-full flex items-center justify-center border flex-shrink-0 mx-3"
@@ -100,10 +138,10 @@ export default function Hero() {
             </span>
           </div>
           <div className="h-px flex-shrink-0" style={{ width: "clamp(40px, 15vw, 160px)", backgroundColor: "rgba(93,123,159,0.25)" }} />
-        </div>
+        </motion.div>
 
-        {/* Nombre 2 — h2 para SEO correcto */}
-        <h2
+        {/* Nombre 2 */}
+        <motion.h2
           className="leading-none mb-8 sm:mb-10 md:mb-12 lg:mb-16"
           style={{
             fontFamily: "Dancing Script",
@@ -112,48 +150,60 @@ export default function Hero() {
             fontStyle: "italic",
             color: "#3a4a5a",
           }}
+          {...scaleIn(1.1)}
         >
           {config.GirlfriendName}
-        </h2>
+        </motion.h2>
 
         {/* Fecha */}
-        <p
+        <motion.p
           className="tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-2 sm:mb-3 md:mb-4 lg:mb-5"
           style={{ color: "#5D7B9F" }}
+          {...fadeUp(1.3)}
         >
           {formatEventDate(config.date)}
-        </p>
+        </motion.p>
 
         {/* Lugar */}
-        <p
+        <motion.p
           className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-4 sm:mb-5 md:mb-6 lg:mb-8"
           style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: "#95A58D" }}
+          {...fadeUp(1.45)}
         >
           {config.venue}
-        </p>
+        </motion.p>
 
-        {/* Adorno debajo del lugar */}
-        <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+        {/* Adorno inferior */}
+        <motion.div
+          className="flex items-center gap-2 sm:gap-3 md:gap-4"
+          {...fadeIn(1.6)}
+        >
           <div className="w-10 sm:w-12 md:w-20 lg:w-28 h-px" style={{ backgroundColor: "#95A58D" }} />
           <Diamond />
           <div className="w-10 sm:w-12 md:w-20 lg:w-28 h-px" style={{ backgroundColor: "#95A58D" }} />
-        </div>
+        </motion.div>
 
         {/* Flecha scroll */}
-        <div className="mt-8 sm:mt-10 md:mt-12 lg:mt-16">
-          <svg
+        <motion.div
+          className="mt-8 sm:mt-10 md:mt-12 lg:mt-16"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
+        >
+          <motion.svg
             className="w-4 h-6 sm:w-5 sm:h-7 md:w-6 md:h-8 lg:w-7 lg:h-10"
             viewBox="0 0 18 28"
             aria-label="Desplazar hacia abajo"
             role="img"
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           >
             <line x1="9" y1="0" x2="9" y2="20" stroke="rgba(93,123,159,0.35)" strokeWidth="1" />
             <polyline points="2,14 9,22 16,14" fill="none" stroke="rgba(93,123,159,0.35)" strokeWidth="1" />
-          </svg>
-        </div>
+          </motion.svg>
+        </motion.div>
       </div>
 
-      {/* Media query para landscape móvil */}
       <style>{`
         @media (max-height: 500px) and (orientation: landscape) {
           .landscape-hide { display: none; }

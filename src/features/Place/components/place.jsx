@@ -60,22 +60,10 @@ const fin    = "20270117T020000Z";  // 16 ene 2027, 8:00 PM Costa Rica (pasa a U
           >
             <h1
               className="text-4xl sm:text-5xl mb-2"
-              style={{ fontFamily: "Dancing Script", color: "#95A58D" }}
+              style={{ paddingTop:"20px", fontFamily: "Dancing Script", color: "#95A58D" }}
             >
               Detalles del día
             </h1>
-
-            <p
-              className="mb-10 text-sm tracking-wide"
-              style={{
-                fontFamily: "Georgia, serif",
-                fontSize: "clamp(18px, 6vw, 10px)",
-                color: "#3a4a5a",
-              }}
-            >
-              Todo lo que necesitas saber
-            </p>
-
             <div
               style={{
                 display: "flex",

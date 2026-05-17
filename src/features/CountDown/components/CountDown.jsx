@@ -83,7 +83,7 @@ export default function Countdown({ targetDate }) {
 "@media (max-width: 640px)": {
   fontWeight: 500,
 },
-            fontFamily: "Georgia, serif",
+            fontFamily: "Dancing Script",
 
             color: "#ffffff",
           }}

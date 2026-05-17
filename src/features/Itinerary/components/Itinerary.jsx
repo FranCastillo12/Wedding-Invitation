@@ -20,37 +20,31 @@ export default function Itinerary() {
       icon: Heart,
       hora: "1:30 pm",
       titulo: "Llegada de invitados",
-      descripcion: "Descripcion",
     },
     {
       icon: Blend,
       hora: "2:00 pm",
       titulo: "Boda",
-      descripcion: "Descripcion",
     },
     {
       icon: Martini,
       hora: "3:00 pm",
       titulo: "Cóctel",
-      descripcion: "Descripcion",
     },
     {
       icon: Music,
       hora: "4:00 pm",
       titulo: "Fiesta",
-      descripcion: "Descripcion",
     },
     {
       icon: UtensilsCrossed,
       hora: "6:00 pm",
       titulo: "Cena",
-      descripcion: "Descripcion",
     },
     {
       icon: PartyPopper,
       hora: "8:00 pm",
       titulo: "Despedida",
-      descripcion: "Descripcion",
     },
   ];
 
@@ -73,21 +67,11 @@ export default function Itinerary() {
           >
             <h1
               className="text-4xl sm:text-5xl mb-2"
-              style={{ fontFamily: "Dancing Script", color: "#95A58D" }}
+              style={{paddingTop:"20px", fontFamily: "Dancing Script", color: "#95A58D" }}
             >
               Programa del día
             </h1>
 
-            <p
-              className="mb-10 text-sm tracking-wide"
-              style={{
-                fontFamily: "Georgia, serif",
-                fontSize: "clamp(18px, 6vw, 10px)",
-                color: "#3a4a5a",
-              }}
-            >
-              Lo que tenemos planeado
-            </p>
 
             <div
               style={{
@@ -166,15 +150,7 @@ export default function Itinerary() {
                   >
                     {item.titulo}
                   </h4>
-                  <p
-                    style={{
-                      fontSize: "clamp(15px, 2.5vw, 14px)",
-                      color: "rgba(58,74,90,0.65)",
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {item.descripcion}
-                  </p>
+
                 </div>
               </motion.div>
             ))}

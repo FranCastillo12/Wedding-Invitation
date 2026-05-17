@@ -15,16 +15,11 @@ export default function CountdownSection({ targetDate }) {
         >
           <h2
             className="text-4xl sm:text-5xl mb-4"
-            style={{ fontFamily: "Dancing Script", color: "#ffffff" }}
+            style={{paddingTop:"20px", fontFamily: "Dancing Script", color: "#ffffff" }}
           >
-            Cuenta atrás
+            Cuenta regresiva
           </h2>
-          <p
-            className="mb-10 text-sm tracking-wide"
-            style={{ fontFamily: "Georgia, serif", color: "#ffffff" }}
-          >
-            Para el día más especial de nuestras vidas
-          </p>
+
 
           {/* Wrapper centrado para el grid */}
           <div className="flex justify-center">

@@ -717,7 +717,7 @@ export default function LandingPage({ onOpenInvitation }) {
 
          {/* === SELLO === */}
 <div
-  className="absolute -translate-x-1/2 left-[41%] "
+  className="absolute -translate-x-1/2 left-[41%] md:left-[43%]"
   style={{
     top: "calc(43.5% - 44px)", // ← subido para compensar el mayor tamaño
     zIndex: 10,
@@ -747,7 +747,7 @@ export default function LandingPage({ onOpenInvitation }) {
       border: "1px solid rgba(255,255,255,0.25)",
     }} />
     <span style={{
-      fontFamily: "Georgia, serif",
+      fontFamily: "Dancing Script",
       fontStyle: "italic",
       fontSize: "clamp(20px, 3vw, 30px)", // ← antes: clamp(13px, 1.8vw, 18px)
       color: "rgba(255,255,255,0.9)",
@@ -757,7 +757,7 @@ export default function LandingPage({ onOpenInvitation }) {
       zIndex: 1,
       lineHeight: 1,
     }}>
-      A&amp;V
+      A<span style={{ fontSize: "0.5em", verticalAlign: "small" }}>&amp;</span>V
     </span>
   </div>
 </div>

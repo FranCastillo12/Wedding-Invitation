@@ -7,8 +7,10 @@ import { CountdownSection } from "@/features/CountDown";
 import { Place } from "@/features/Place";
 import { Itinerary } from "@/features/Itinerary";
 import { DressCode } from "@/features/DressCode";
-import { Divider } from "@/features/Divider";
+
 import { Attendance } from "@/features/Attendance";
+import { Footer } from "@/features/Footer";
+
 
 
 
@@ -24,17 +26,19 @@ export default function MainContent() {
     <>
       <Hero />
       <CountdownSection targetDate={WEDDING_DATE}/>
-      <Divider />
+
       <Place />
-      <Divider />
+    
       <Itinerary />
-      <Divider />
+    
       <DressCode />
-      <Divider />
+   
       <Gifts />
       
       <Events />
       <Attendance />
+      <Footer />
+
  
    
     </>
