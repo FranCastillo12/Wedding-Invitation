@@ -10,7 +10,7 @@ import { DressCode } from "@/features/DressCode";
 
 import { Attendance } from "@/features/Attendance";
 import { Footer } from "@/features/Footer";
-
+import {PhotoGallery}  from "@/features/PhotoGallery";
 
 
 
@@ -36,6 +36,7 @@ export default function MainContent() {
       <Gifts />
       
       <Events />
+      <PhotoGallery />
       <Attendance />
       <Footer />
 

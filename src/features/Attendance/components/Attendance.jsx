@@ -170,7 +170,7 @@ export default function Attendance({ onSubmit }) {
       <section
         id="asistencia"
         className="relative overflow-hidden"
-        style={{ backgroundColor: "#F0F1EF" }}
+        style={{ backgroundColor: "#DADEDF"   }}
       >
         <div className="container mx-auto px-4 py-5 relative z-10">
           {/* Section Header */}

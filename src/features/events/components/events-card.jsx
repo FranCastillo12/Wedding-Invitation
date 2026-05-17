@@ -10,11 +10,11 @@ const Modal = ({ isOpen, onClose, children }) => {
   return createPortal(
     <>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={onClose}
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60]"
+        initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center space-y-4 mb-16"
       />
 
       <div
@@ -54,9 +54,8 @@ const SingleEventCard = ({ eventData }) => {
     <>
       <motion.div
         className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-4"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+
+            
       >
         <div className="flex justify-between items-center">
           <h3 className="text-xl font-semibold text-gray-800">Hotel Marriott</h3>

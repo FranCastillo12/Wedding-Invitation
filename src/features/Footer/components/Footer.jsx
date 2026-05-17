@@ -8,7 +8,7 @@ export default function Footer() {
 
   return (
     <footer
-      style={{ backgroundColor: "#DADEDF" }}
+      style={{ backgroundColor: "#F0F1EF"   }}
       className="relative overflow-hidden px-6 py-16 flex flex-col items-center text-center"
     >
       {/* Línea top */}
